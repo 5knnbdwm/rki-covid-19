@@ -194,7 +194,6 @@ app.get('/', async function (req, res) {
 
   for (let i = 0; i < data.length; i++) {
     let item = '';
-    data[i]['error'] == '' ? console.log(true) : console.log(false);
 
     if (data[i]['error'] == '') {
       item = new Date(data[i]['created_at']) + ' - ' + data[i]['info'];

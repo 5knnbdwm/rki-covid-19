@@ -122,7 +122,8 @@ process.env.APP_ENV === 'dev' ? (cronSchedule = '*/15 * * * * *') : (cronSchedul
 new CronJob(
   cronSchedule,
   async function () {
-    console.log('here');
+    process.env.APP_ENV === 'dev' ? console.log('here') : '';
+
     let raw_html = await getHTML();
     let tableData;
     let infoData;
@@ -193,7 +194,6 @@ app.get('/', async function (req, res) {
 
   for (let i = 0; i < data.length; i++) {
     let item = '';
-    console.log(data[i]);
     data[i]['error'] == '' ? console.log(true) : console.log(false);
 
     if (data[i]['error'] == '') {

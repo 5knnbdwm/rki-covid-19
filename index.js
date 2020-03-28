@@ -116,8 +116,8 @@ async function parseInfoData(html) {
 }
 
 let cronSchedule;
-process.env.APP_ENV === 'dev' ? (cronSchedule = '*/15 * * * * *') : (cronSchedule = '0 */1 * * *');
-// in env=dev run every 15 sec, in env=prod run every hour
+process.env.APP_ENV === 'dev' ? (cronSchedule = '*/15 * * * * *') : (cronSchedule = '0 */6 * * *');
+// in env=dev run every 15 sec, in env=prod run every 6 hours
 
 new CronJob(
   cronSchedule,

@@ -187,20 +187,28 @@ new CronJob(
   true
 );
 
-app.get('/', async function (req, res) {
+app.get('/info', async function (req, res) {
   let data = await rki_log.model.find();
-  var text = '';
+  let text = [];
   data.length > 20 ? (data = data.reverse().slice(0, 20)) : (data = data.reverse());
 
   for (let i = 0; i < data.length; i++) {
     let item = '';
 
     if (data[i]['error'] == '') {
-      item = new Date(data[i]['created_at']) + ' - ' + data[i]['info'];
+      item = {
+        created_at: new Date(data[i]['created_at']),
+        msg: data[i]['info'],
+        error: null,
+      };
     } else {
-      item = new Date(data[i]['created_at']) + ' - ' + data[i]['info'] + ' - ' + data[i]['error'];
+      item = {
+        created_at: new Date(data[i]['created_at']),
+        msg: data[i]['info'],
+        error: data[i]['error'],
+      };
     }
-    text += item + '<br>';
+    text.push(item);
   }
 
   res.send(text);
@@ -208,7 +216,7 @@ app.get('/', async function (req, res) {
 
 app.get('/data', async function (req, res) {
   let data = await rki_data.model.find();
-  res.send(data);
+  res.json(data);
 });
 
 // eslint-disable-next-line no-console

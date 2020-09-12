@@ -17,7 +17,7 @@
     "custom-env": "^2.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.9.6",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
